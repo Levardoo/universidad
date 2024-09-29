@@ -31,7 +31,7 @@ import           Data.Maybe
 
 -}
 
-square :: Integer -> Integer -- declaración
+square :: Integer ->  Integer -- declaración
 square x = x * x             -- definición
 
 -- pythagoras
