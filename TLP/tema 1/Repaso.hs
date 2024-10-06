@@ -630,6 +630,12 @@ treeC = Node 'z'
           (Node 't' (Node 's' Empty (Leaf 'a')) (Leaf 'g'))
           (Node 'w' (Leaf 'h') (Node 'p' (Leaf 'f') (Leaf 'n')))
 
+recTree :: (a->b->b->b) -> (a -> b)  -> b -> Tree a -> b 
+recTree n l e t = recTreeAux t
+   where 
+      recTreeAux Empty = e
+      recTreeAux (Leaf h) = l h
+      recTreeAux (Node r i d) = n r (recTreeAux i) (recTreeAux d)
 -- |
 -- >>> treeSize treeI
 -- 6
@@ -675,12 +681,6 @@ treeElem x (Node r i d) = f r (treeElem x i)  (treeElem x d)
    where
       f r si sd = (x ==r) || si || sd
 
-recTree :: (a->b->b->b) -> (a -> b)  -> b -> Tree a -> b 
-recTree n l e t = recTreeAux t
-   where 
-      recTreeAux Empty = e
-      recTreeAux (Leaf h) = l h
-      recTreeAux (Node r i d) = n r (recTreeAux i) (recTreeAux d)
 
 
 
