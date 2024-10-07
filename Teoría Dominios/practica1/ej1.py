@@ -24,6 +24,12 @@ def es_orden_parcial(conjunto, relacion):
     """Verifica si la relación es un orden parcial."""
     return es_reflexiva(conjunto, relacion) and es_antisimetrica(relacion) and es_transitiva(relacion)
 
+
+
+
+
+
+
 # Solicitar el conjunto de elementos
 P = input("Introduce el conjunto de elementos separados por comas: ").split(",")
 
@@ -31,6 +37,8 @@ P = input("Introduce el conjunto de elementos separados por comas: ").split(",")
 P = [x.strip() for x in P]
 
 # Solicitar las relaciones en forma de pares
+
+
 R = []
 print("Introduce las relaciones en forma de pares (por ejemplo: a,b). Introduce 'fin' para terminar:")
 while True:
