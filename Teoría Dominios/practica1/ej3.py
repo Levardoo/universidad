@@ -24,9 +24,9 @@ def es_subconjunto_dirigido(P, R, A):
     return True, "A es un subconjunto dirigido"
 # Ejemplo de uso
 
-P = {1, 2, 3, 4, 5}
-R = [(1, 3), (2, 3), (3, 4), (4, 5)]  # Relación de orden (a R b significa a <= b)
-A = {1, 2, 3}
+P = {1, 2, 3, 4}
+R = [(1,1),(2,2),(3,3),(4,4),(1,2),(1,3),(2,4),(3,4),(1,4)]  # Relación de orden (a R b significa a <= b)
+A = {1, 2, 4}
 
 resultado, mensaje = es_subconjunto_dirigido(P, R, A)
 print(mensaje)

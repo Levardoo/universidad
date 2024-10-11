@@ -26,10 +26,6 @@ def es_orden_parcial(conjunto, relacion):
 
 
 
-
-
-
-
 # Solicitar el conjunto de elementos
 P = input("Introduce el conjunto de elementos separados por comas: ").split(",")
 
