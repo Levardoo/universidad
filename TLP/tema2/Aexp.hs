@@ -122,20 +122,25 @@ updates = undefined
 -- Los plegados se pueden deducir a partir de la definición del tipo algebraico     
 
 
-foldAexp :: (LitNum -> b) -> (VarId -> b) -> (b -> b -> b) -> Aexp -> b
-foldAexp nl v add a = recAexp a
+foldAexp :: (LitNum -> b) -> (VarId -> b) -> (b -> b -> b) -> (b -> b -> b)  -> (b -> b -> b)  -> Aexp -> b
+foldAexp nl v add mul sub a = recAexp a
     where
         recAexp (NumLit n) = nl n
         recAexp (Var x) = v x
         recAexp (Add a1 a2) = add (recAexp a1) (recAexp a2)
+        recAexp (Mul a1 a2) = mul (recAexp a1) (recAexp a2)
+        recAexp (Sub a1 a2) = sub (recAexp a1) (recAexp a2)
 
 -- | Use 'foldAexp' to define the functions 'aVal', 'fvAexp', and 'substAexp'.
 
-aVal' :: untyped
-aVal' = undefined
+aVal' :: Aexp -> State -> Z
+aVal' a s = foldAexp nVal s (+) (*) (-) a
+
 
 fvAexp' :: untyped
 fvAexp' = undefined
 
-substAexp' :: untyped
-substAexp' = undefined
+substAexp' :: Aexp ->Subst ->Aexp
+substAexp' a (x:->:a0) = foldAexp NumLit substVar Add Mul Sub a
+    where
+        substVar y = if x == y then a0 else Var y

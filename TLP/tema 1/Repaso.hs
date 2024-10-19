@@ -44,7 +44,8 @@ square x = x * x             -- definición
 
 -}
 
-pythagoras = undefined
+pythagoras :: Integer -> Integer -> Integer
+pythagoras x y = (+) (square x)  (square y)
 
 -- | 3. Condicionales en Haskell
 ----------------------------------------------------------------
@@ -79,7 +80,10 @@ maxOf x y = if x >= y then x else y
 -- -1
 
 signo :: Integer -> Integer  -- predefinida como signum
-signo x = undefined
+signo x 
+   | x == 0 = 0
+   | x < 0 = -1
+   | otherwise = 1
 
 -- Es mejor emplear guardas que anidar if then else
 -- guarda ::= '|' exp_Bool = exp
@@ -291,7 +295,7 @@ twice f x = f (f x)
 -- (65,False)
 
 mapTuple :: (a->c) -> (b->d) -> (a,b) -> (c,d)
-mapTuple f g (x,y) = undefined
+mapTuple f g (x,y) = (f x, g y)
 
 -- map y secciones
 
@@ -303,8 +307,10 @@ mapTuple f g (x,y) = undefined
 -- [5.0,5.0,7.0,10.0,8.7]
 
 aprobadoGeneral :: [Double] -> [Double]
-aprobadoGeneral xs = undefined
-
+aprobadoGeneral [] = []
+aprobadoGeneral (x:xs)
+   |x < 5 = 5:aprobadoGeneral xs
+   |otherwise = x:aprobadoGeneral xs
 -- lambda expresiones
 
 -- MAD = Multiply, Add, Divide

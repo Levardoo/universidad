@@ -25,14 +25,14 @@ seq1_5 = list2seq [1..5]
 -- |
 -- >>> aplica (*2) seq1_5
 -- Cons 2 (Cons 4 (Cons 6 (Cons 8 (Cons 10 Nil))))
-aplica :: untyped
-aplica = lis
-
+aplica :: (a -> b) -> Seq a -> Seq b
+aplica f Nil = Nil
+aplica f (Cons x xs) = Cons (f x) (aplica f xs)
 -- |
 -- >>> plegar (+) 0 seq1_5
 -- 15
 plegar :: (a-> b -> b)-> b -> Seq a -> Integer
 plegar f z xs = plegarAux xs 
     where 
-        plegarAux Nil = z 
-        plegarAux
+        plegarAux Nil = 0 
+        plegarAux (Cons x xs) = f x (plegarAux xs)
